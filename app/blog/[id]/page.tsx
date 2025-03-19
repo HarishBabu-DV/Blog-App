@@ -18,7 +18,7 @@ const page = ({ params }: propParams) => {
         <>
             {
                 blog && (
-                    <>
+                    <main className='max-w-[1920px] mx-auto'>
                         <div className='bg-gray-200 py-5 md:px-12 lg:px-28'>
                             <div className='flex justify-between items-center'>
                                 <Link href={'/'}>
@@ -49,11 +49,17 @@ const page = ({ params }: propParams) => {
                             </p>
                         </div>
                         <div className='my-24 '>
-                        <Image src={assets.facebook_icon} alt='facebook icon' width={50}/>
-                        <Image src={assets.twitter_icon} alt='twitter icon' width={50}/>
-                        <Image src={assets.googleplus_icon} alt='google_plus icon' width={50}/>
+                            <p className='font-semibold my-4 text-black'>
+                                Share this article on social media
+                            </p>
+                            <div className='flex'>
+
+                            <Image src={assets.facebook_icon} alt='facebook icon' width={50}/>
+                            <Image src={assets.twitter_icon} alt='twitter icon' width={50}/>
+                            <Image src={assets.googleplus_icon} alt='google_plus icon' width={50}/>
+                            </div>
                         </div>
-                    </>
+                    </main>
                 )
             }
         </>
