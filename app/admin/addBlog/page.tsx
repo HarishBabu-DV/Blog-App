@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { assets } from '@/assets/assets'
 
 const page = () => {
-    const [image,setImage]=useState(false)
+    const [image,setImage]=useState<File|null> (null)
     const [data,setData]=useState({
         title:'',
         description:'',
@@ -17,15 +17,24 @@ const page = () => {
         const value=e.target.value;
         setData((data)=>({...data,[name]:value}))
     }
+    const onSubmitHandler=(e:React.FormEvent<HTMLFormElement>)=>{
+        e.preventDefault();
+        console.log(data);
+        console.log(image);
+    }
     console.log(data)
   return (
     <>
-        <form  action="" className='pt-5 px-5 sm:pt-12 sm:scroll-pl-16'>
+        <form  action="" className='pt-5 px-5 sm:pt-12 sm:scroll-pl-16' onSubmit={onSubmitHandler}>
             <p className="text-xl font-medium">Upload Thumbnail</p>
             <label htmlFor="image">
-                <Image src={assets.upload_area} alt='upload icon' width={140} height={70} className='mt-4'/>                
+                <Image src={image ?URL.createObjectURL(image) : assets.upload_area} alt='upload icon' width={140} height={70} className='mt-4'/>                
             </label>
-            <input type="file" id="image" hidden required />
+            <input type="file" id="image" hidden required onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files.length>0) {
+          setImage(event.target.files[0]);
+        } }
+        }/>
 
             <p className='text-xl mt-4'>Blog Title</p>
             <input type="text" placeholder='Type title here' required name='title' className='w-full sm:w-[500px] mt-4 px-4 py-3 border border-black' onChange={onChangeHandle}/>
@@ -40,7 +49,7 @@ const page = () => {
                 <option value="Lifestyle">Lifestyle</option>
             </select>
             <br />
-            <button className='mt-8 w-40 h-12 bg-black text-white'>ADD</button>
+            <button type='submit' className='mt-8 w-40 h-12 bg-black text-white'>ADD</button>
         </form>
     </>
   )
