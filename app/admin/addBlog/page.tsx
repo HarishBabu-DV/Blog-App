@@ -23,6 +23,7 @@ const page = () => {
         console.log(image);
     }
     console.log(data)
+    
   return (
     <>
         <form  action="" className='pt-5 px-5 sm:pt-12 sm:scroll-pl-16' onSubmit={onSubmitHandler}>
