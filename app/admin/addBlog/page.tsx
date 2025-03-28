@@ -2,6 +2,8 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { assets } from '@/assets/assets'
+import axios from 'axios'
+import { toast } from 'sonner'
 
 const page = () => {
     const [image,setImage]=useState<File|null> (null)
@@ -17,10 +19,14 @@ const page = () => {
         const value=e.target.value;
         setData((data)=>({...data,[name]:value}))
     }
-    const onSubmitHandler=(e:React.FormEvent<HTMLFormElement>)=>{
+    const onSubmitHandler=async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
+        //validating image selected
+        if(!image){
+            console.error('No image selected');
+            return;
+        }
         console.log(data);
-        // console.log(image);
         const formData=new FormData();
         formData.append('title',data.title);
         formData.append('description',data.description);
@@ -28,7 +34,25 @@ const page = () => {
         formData.append('author',data.author);
         formData.append('image',image!);
         formData.append('authorImg',data.authorimg);
-        console.log(formData);
+        // console.log('Form Data contents');
+        // formData.forEach((value,key)=>{
+        //     console.log(`${key}:`,value);
+            
+        // })
+        const response=await axios.post('/api/blog',formData)
+        if(response.data.success){
+            toast.success(response.data.message);
+            setData({
+                title:'',
+                description:'',
+                category:'Startup',
+                author:'Alex',
+                authorImg:'/author_img.png',
+            })
+            setImage(null);
+        }else{
+            toast.error(response.data.mesage)
+        }
     }
     
     console.log(data)
