@@ -12,7 +12,7 @@ const page = () => {
         author:'Alex',
         authorimg:'/author_img.png'
     })
-    const onChangeHandle=(e:React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>)=>{
+    const onChangeHandle=(e:React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>)=>{
         const name=e.target.name;
         const value=e.target.value;
         setData((data)=>({...data,[name]:value}))
@@ -20,8 +20,17 @@ const page = () => {
     const onSubmitHandler=(e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
         console.log(data);
-        console.log(image);
+        // console.log(image);
+        const formData=new FormData();
+        formData.append('title',data.title);
+        formData.append('description',data.description);
+        formData.append('category',data.category);
+        formData.append('author',data.author);
+        formData.append('image',image!);
+        formData.append('authorImg',data.authorimg);
+        console.log(formData);
     }
+    
     console.log(data)
     
   return (
@@ -41,7 +50,7 @@ const page = () => {
             <input type="text" placeholder='Type title here' required name='title' className='w-full sm:w-[500px] mt-4 px-4 py-3 border border-black' onChange={onChangeHandle}/>
 
             <p className='text-xl mt-4'>Blog Description</p>
-            <textarea rows={6} placeholder='Type description here' name='description' required className='w-full sm:w-[500px] mt-4 px-4 py-3 border border-black' />
+            <textarea rows={6} placeholder='Type description here' name='description' required className='w-full sm:w-[500px] mt-4 px-4 py-3 border border-black' onChange={onChangeHandle}/>
 
             <p className='text-xl mt-4'>Blog Category</p>
             <select onChange={onChangeHandle} name='category' className='w-40 mt-4 px-4 py-3 border border-gray-500'>
