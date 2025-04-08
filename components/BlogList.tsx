@@ -5,8 +5,8 @@ import BlogCard from './BlogCard'
 import axios from 'axios'
 import { StaticImageData } from 'next/image'
 import Skeleton from './Skeleton'
-type BlogProps={
-    id:number;
+export type BlogProps={
+    _id:number | string;
     title:string;
     description:string;
     image:StaticImageData|string;
@@ -43,7 +43,7 @@ const BlogList = () => {
             } */}
             {
                 blogs ? blogs.filter((item)=>menu==='All' ? true : item.category === menu).map((item,index)=>(
-                    <BlogCard key={index} data={item} />
+                    <BlogCard key={index} category={item.category} description={item.description} image={item.image} title={item.title} _id = {item._id}/>
                 ))
                 : 
                 <>
