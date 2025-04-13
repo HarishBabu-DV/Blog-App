@@ -25,7 +25,7 @@ import blog_icon from './blog_icon.png'
 import add_icon from './add_icon.png'
 import email_icon from './email_icon.png'
 import upload_area from './upload_area.png'
-
+import { ImBooks } from "react-icons/im";
 export const assets = {
     facebook_icon,
     googleplus_icon,
@@ -200,4 +200,10 @@ export const assets = {
         author:"Alex Bennett",
         author_img:profile_icon
     },
+    
 ]
+export const adminPageAssets={
+    iconContents:{
+        bookIcon:ImBooks
+    }
+}
