@@ -77,7 +77,7 @@ const page = () => {
             <textarea rows={6} placeholder='Type description here' name='description' required className='w-full sm:w-[500px] mt-4 px-4 py-3 border border-black' onChange={onChangeHandle}/>
 
             <p className='text-xl mt-4'>Blog Category</p>
-            <select onChange={onChangeHandle} name='category' className='w-40 mt-4 px-4 py-3 border border-gray-500'>
+            <select onChange={(onChangeHandle)} name='category' className='w-40 mt-4 px-4 py-3 border border-gray-500'>
                 <option value="Startup">Startup</option>
                 <option value="Technology">Technology</option>
                 <option value="Lifestyle">Lifestyle</option>
