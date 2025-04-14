@@ -15,13 +15,13 @@ const page = () => {
     fetchBlogs();
   },[])
   return (
-    <section className='flex flex-col gap-3'>
+    <section className='flex flex-col gap-5 '>
       <h1 className='text-2xl font-medium text-center py-1.5'>Welcome Back Admin &#128075;</h1>
 
       {/* Middle Section  */}
 
       {/* Total Blogs created  */}
-      <div className='flex flex-col items-center shadow-xl w-max rounded-md px-4 py-6 border-[1px] border-gray-300 ml-4'>
+      <div className='flex flex-col items-center shadow-xl w-max rounded-md px-4 py-6 border-[1px] border-gray-300 mx-auto'>
         <div>
           <iconContents.bookIcon className=' text-blue-700 text-3xl'/>
         </div>
